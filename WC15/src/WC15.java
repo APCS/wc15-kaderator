@@ -31,7 +31,7 @@ public class WC15
   public static String centralThree(String letters)
   {
     //TODO: Finish
-    return "no";
+    return letters.substring(letters.length() / 2 - 1, letters.length() / 2 + 2);
   }
 
   /**
@@ -51,8 +51,16 @@ public class WC15
    */
   public static String chopFront(String str)
   {
-    //TODO: Finish
-    return "no";
+    String answer = str;
+    if (!answer.substring(1, 2).equals("b"))
+    {
+      answer = answer.substring(0, 1) + answer.substring(2);
+    }
+    if (!answer.substring(0,1).equals("a"))
+    {
+      answer = answer.substring(1);
+    }
+    return answer;
   }
 
   /**
@@ -72,8 +80,15 @@ public class WC15
    */
   public static String hateX(String str)
   {
-    //TODO: Finish
-    return "no";
+    String answer = "";
+    for (int i = 0; i < str.length(); i++)
+    {
+      if (!str.substring(i, i + 1).equals("x") || i >= 2)
+      {
+        answer += str.substring(i, i + 1);
+      }
+    }
+    return answer;
   }
 
   /**
@@ -88,7 +103,9 @@ public class WC15
    */
   public static void swapRows(int[][] mat, int rowAIndex, int rowBIndex)
   {
-    //TODO: Finish
+    int [] temp = mat [rowAIndex];
+    mat [rowAIndex] = mat[rowBIndex];
+    mat [rowBIndex] = temp;
   }
 
   /**
@@ -103,7 +120,19 @@ public class WC15
    */
   public static void swapColumns(int[][] mat, int colAIndex, int colBIndex)
   {
-    //TODO: Finish
+    int [] temp = new int [mat.length];
+    for (int i = 0; i < mat.length; i++)
+    {
+      temp[i] = mat[i][colAIndex];
+    }
+    for (int i = 0; i < mat.length; i++)
+    {
+      mat[i][colAIndex] = mat[i][colBIndex];
+    }
+    for (int i = 0; i < mat.length; i++)
+    {
+      mat[i][colBIndex] = temp[i];
+    }
   }
 
   /**
@@ -122,8 +151,24 @@ public class WC15
    */
   public static String[][] fill2DWithLetters(String str, int rows, int cols)
   {
-    //TODO: Finish
-    return new String[][] {{"42"}};
+    String [][] answer = new String [rows][cols];
+    int strCount = 0;
+    for (int i = 0; i < answer.length; i++)
+    {
+      for (int b = 0; b < answer[0].length; b++)
+      {
+        if (strCount < str.length())
+        {
+          answer[i][b] = str.substring(strCount, strCount + 1);
+          strCount++;
+        }
+        else
+        {
+          answer[i][b] = null;
+        }
+      }
+    }
+    return answer;
   }
 
   /**
@@ -155,8 +200,17 @@ public class WC15
    */
   public static int[][] fillDownAndUp(int[] vals, int rows, int cols)
   {
-    //TODO: Finish
-    return new int[][] {{42}};
+    int [][] answer = new int [rows][cols];
+    int intCount = 0;
+    for (int i = 0; i < answer.length; i++)
+    {
+      for (int b = 0; b < answer[0].length; b++)
+      {
+          answer[i][b] = vals[intCount];
+          intCount++;
+      }
+    }
+    return answer;
   }
 
   /**
