@@ -200,14 +200,19 @@ public class WC15
    */
   public static int[][] fillDownAndUp(int[] vals, int rows, int cols)
   {
+    int numCount = 0;
     int [][] answer = new int [rows][cols];
-    int intCount = 0;
-    for (int i = 0; i < answer.length; i++)
+    for (int c = 0; c < answer[0].length; c++)
     {
-      for (int b = 0; b < answer[0].length; b++)
+      for (int r = rows - 1; r >= 0 && c % 2 == 1; r--)
       {
-          answer[i][b] = vals[intCount];
-          intCount++;
+        answer[r][c] = vals[numCount];
+        numCount++;
+      }
+      for (int r = 0; r < answer.length && c % 2 != 1; r++)
+      {
+        answer[r][c] = vals[numCount];
+        numCount++;
       }
     }
     return answer;
@@ -245,8 +250,28 @@ public class WC15
   public static int[][] crop2D(int[][] mat, int startRow, int startCol,
       int endRow, int endCol)
   {
-    //TODO: Finish
-    return new int[][] {{42}};
-  }
+    int [][] arr = new int [endRow - startRow + 1][endCol - startCol + 1];
 
+    ArrayList <Integer> nums = new ArrayList<>();
+    for (int r = 0; r < mat.length; r++)
+    {
+      for (int c = 0; c < mat[0].length; c++)
+      {
+        if (r >= startRow && r <= endRow && c >= startCol && c <= endCol)
+        {
+          nums.add(mat[r][c]);
+        }
+      }
+    }
+    int numCounter = 0;
+    for (int r = 0; r < arr.length; r++)
+    {
+      for (int c = 0; c < arr[0].length; c++)
+      {
+        arr[r][c] = nums.get(numCounter);
+        numCounter++; 
+      }
+    }
+    return arr;
+  }
 }
